@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сетка A4 38×55 клеток</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #E0E0E0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 10mm;
+            background: white;
+            box-sizing: border-box;
+        }
+        .grid-container {
+            width: 190mm;
+            height: 275mm;
+            position: relative;
+            overflow: visible;
+        }
+        svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                box-shadow: none;
+                padding: 10mm;
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+            }
+            .grid-container {
+                width: 190mm;
+                height: 275mm;
+                overflow: visible;
+            }
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="grid-container">
+        <svg id="gridSvg" width="100%" height="100%" viewBox="-0.08 -0.08 190.16 275.16" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"></svg>
+    </div>
+</div>
+<script>
+    (function() {
+        const svg = document.getElementById("gridSvg");
+        const cols = 38;
+        const rows = 55;
+        const step = 5;
+        const pointsPerSide = 10;
+        const radius = 0.06;
+        const fragment = document.createDocumentFragment();
+
+        for (let i = 0; i <= rows; i++) {
+            const y = i * step;
+            for (let j = 0; j < cols; j++) {
+                const x1 = j * step;
+                const dx = step / (pointsPerSide - 1);
+                for (let k = 0; k < pointsPerSide; k++) {
+                    const cx = x1 + k * dx;
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", cx);
+                    circle.setAttribute("cy", y);
+                    circle.setAttribute("r", radius);
+                    circle.setAttribute("fill", "black");
+                    fragment.appendChild(circle);
+                }
+            }
+        }
+
+        for (let j = 0; j <= cols; j++) {
+            const x = j * step;
+            for (let i = 0; i < rows; i++) {
+                const y1 = i * step;
+                const dy = step / (pointsPerSide - 1);
+                for (let k = 0; k < pointsPerSide; k++) {
+                    const cy = y1 + k * dy;
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", x);
+                    circle.setAttribute("cy", cy);
+                    circle.setAttribute("r", radius);
+                    circle.setAttribute("fill", "black");
+                    fragment.appendChild(circle);
+                }
+            }
+        }
+
+        svg.appendChild(fragment);
+    })();
+</script>
+</body>
+</html>

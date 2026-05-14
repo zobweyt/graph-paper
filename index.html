@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Сетка A4 38×55 клеток</title>
+    <title>Сетка A4 36×53 клеток</title>
     <style>
         * {
             margin: 0;
@@ -19,13 +19,13 @@
         .page {
             width: 210mm;
             height: 297mm;
-            padding: 10mm;
+            padding: 15mm;
             background: white;
             box-sizing: border-box;
         }
         .grid-container {
-            width: 190mm;
-            height: 275mm;
+            width: 180mm;
+            height: 267mm;
             position: relative;
             overflow: visible;
         }
@@ -40,14 +40,14 @@
             }
             .page {
                 box-shadow: none;
-                padding: 10mm;
+                padding: 15mm;
                 margin: 0;
                 width: 210mm;
                 height: 297mm;
             }
             .grid-container {
-                width: 190mm;
-                height: 275mm;
+                width: 180mm;
+                height: 267mm;
                 overflow: visible;
             }
             svg {
@@ -60,14 +60,14 @@
 <body>
 <div class="page">
     <div class="grid-container">
-        <svg id="gridSvg" width="100%" height="100%" viewBox="-0.08 -0.08 190.16 275.16" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"></svg>
+        <svg id="gridSvg" width="100%" height="100%" viewBox="-0.08 -0.08 180.16 267.16" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;"></svg>
     </div>
 </div>
 <script>
     (function() {
         const svg = document.getElementById("gridSvg");
-        const cols = 38;
-        const rows = 55;
+        const cols = 36;
+        const rows = 53;
         const step = 5;
         const pointsPerSide = 10;
         const radius = 0.06;
